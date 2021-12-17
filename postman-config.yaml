@@ -145,13 +145,13 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/BaseRspObject'
-  /refreshToken:
+  /refreshToken1:
     put:
       tags:
       - login-controller
-      operationId: refreshToken
+      operationId: refreshToken1
       parameters:
-      - name: refreshToken
+      - name: refreshToken1
         in: query
         required: true
         schema:
