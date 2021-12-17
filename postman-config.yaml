@@ -1,0 +1,7469 @@
+openapi: 3.0.1
+info:
+  title: Patron
+  description: SportyBet Patron
+  version: "1.0"
+servers:
+- url: https://www.test.easebet.com
+  description: Generated server url
+paths:
+  /account/{accountId}/completeBySms:
+    put:
+      tags:
+      - register-controller
+      operationId: completeBySms
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: cookie
+        required: false
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/{accountId}/completeByCall:
+    put:
+      tags:
+      - register-controller
+      operationId: completeBySms_1
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: cookie
+        required: false
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /refreshToken:
+    put:
+      tags:
+      - login-controller
+      operationId: refreshToken
+      parameters:
+      - name: refreshToken
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /preferences/selectedTeams:
+    get:
+      tags:
+      - user-preference-controller
+      operationId: getPrefCompetitors
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: tournamentId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListPreferenceTournamentCompetitorsVO'
+    put:
+      tags:
+      - user-preference-controller
+      operationId: savePrefCompetitors
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PreferenceTournamentCompetitorsVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /preferences/selectedSports:
+    get:
+      tags:
+      - user-preference-controller
+      operationId: getPrefSports
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListString'
+    put:
+      tags:
+      - user-preference-controller
+      operationId: savePrefSports
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /preferences/selectedMarkets:
+    get:
+      tags:
+      - user-preference-controller
+      operationId: getPrefMarkets
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: sportId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListPreferenceSportMarketsVO'
+    put:
+      tags:
+      - user-preference-controller
+      operationId: savePrefMarkets
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PreferenceSportMarketsVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /preferences/selectedLeagues:
+    get:
+      tags:
+      - user-preference-controller
+      operationId: getPrefTournaments
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListString'
+    put:
+      tags:
+      - user-preference-controller
+      operationId: savePrefTournaments
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /preferences/selectedLeagues/{leagueId}:
+    put:
+      tags:
+      - user-preference-controller
+      operationId: appendPrefTournament
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: leagueId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+    delete:
+      tags:
+      - user-preference-controller
+      operationId: deletePrefTournament
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: leagueId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /preferences/selectedCategories:
+    get:
+      tags:
+      - user-preference-controller
+      operationId: getPrefCategories
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListString'
+    put:
+      tags:
+      - user-preference-controller
+      operationId: savePrefCategories
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /preferences/selectedCategories/{categoryId}:
+    put:
+      tags:
+      - user-preference-controller
+      operationId: appendPrefCategory
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+    delete:
+      tags:
+      - user-preference-controller
+      operationId: deletePrefCategory
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /preferences/oddsRange:
+    get:
+      tags:
+      - user-preference-controller
+      operationId: getPrefOddsRange
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspPreferenceOddsRangeVO'
+    put:
+      tags:
+      - user-preference-controller
+      operationId: savePrefOddsRange
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreferenceOddsRangeVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+    delete:
+      tags:
+      - user-preference-controller
+      operationId: deletePrefOddsRange
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /preferences/defaultStake:
+    get:
+      tags:
+      - user-preference-controller
+      operationId: getPrefDefaultStake
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspPreferenceDefaultStakeVO'
+    put:
+      tags:
+      - user-preference-controller
+      operationId: savePrefDefaultStake
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreferenceDefaultStakeVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+    delete:
+      tags:
+      - user-preference-controller
+      operationId: deletePrefDefaultStake
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /password:
+    put:
+      tags:
+      - account-center-controller
+      operationId: changePassword
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: oldPassword
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /password/reset:
+    put:
+      tags:
+      - login-controller
+      operationId: resetPasswordByPhoneVerifyCode
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /password/completeReset:
+    put:
+      tags:
+      - login-controller
+      operationId: validatePasswordResetPhoneVerifyCode
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phoneVerifyCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: bizType
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /password/completeResetBySms:
+    put:
+      tags:
+      - login-controller
+      operationId: resetPasswordBySms
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /password/changeWithToken:
+    put:
+      tags:
+      - account-center-controller
+      operationId: changePasswordWithToken
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /ms/user/status:
+    get:
+      tags:
+      - user-query-ms-controller
+      operationId: getUserStatus
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspUserStatus'
+    put:
+      tags:
+      - user-manage-ms-controller
+      operationId: setUserStatus
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: true
+        schema:
+          type: boolean
+      - name: effectTime
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: reason
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /ms/user/selfExclusion:
+    put:
+      tags:
+      - user-manage-ms-controller
+      operationId: setUserSelfExclusionTime
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: mins
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /mail/verify/submit:
+    put:
+      tags:
+      - mail-verify-controller
+      operationId: submit
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountProfile'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /mail/verify/send:
+    put:
+      tags:
+      - mail-verify-controller
+      operationId: send
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailSendVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /mail/management/reset/verification/{uid}:
+    put:
+      tags:
+      - mail-management-controller
+      operationId: resetVerification
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/{accountId}/complete:
+    put:
+      tags:
+      - register-controller
+      operationId: validateRegisterPhoneVerifyCode
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phoneVerifyCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: setCookie
+        in: header
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - name: from
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/{accountId}/completeByVoiceOtp:
+    put:
+      tags:
+      - voice-otp-register-controller
+      operationId: validateRegisterVoiceOtp
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: otp
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: otpKey
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/{accountId}/completeByOtp:
+    put:
+      tags:
+      - register-controller
+      operationId: validateRegisterOtpCode
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: otpCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/otp/voice/password/completeReset:
+    put:
+      tags:
+      - voice-otp-controller
+      operationId: validatePasswordResetVoiceOtp
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: otp
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: otpKey
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/otp/password/completeReset:
+    put:
+      tags:
+      - otp-code-controller
+      operationId: validatePasswordResetOtpCode
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: otpCode
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/info/{property}:
+    put:
+      tags:
+      - account-center-controller
+      operationId: updateProfileProperty
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: property
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: value
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: area
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/info/whole:
+    put:
+      tags:
+      - account-center-controller
+      operationId: updateProfile
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountProfile'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/info/avatar:
+    put:
+      tags:
+      - account-center-controller
+      operationId: changeAccountAvatar
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: avatarUrl
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/config:
+    put:
+      tags:
+      - account-center-controller
+      operationId: updateConfig
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: matchNotice
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: push
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/config/matchNotice/set:
+    put:
+      tags:
+      - account-center-controller
+      operationId: setMatchNotice
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: open
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/completeThirdParty:
+    put:
+      tags:
+      - third-party-login-controller
+      operationId: thirdPartyAccountBindPhone
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phoneVerifyCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: User-Agent
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: OperId
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/completeThirdPartyByVoiceOtp:
+    put:
+      tags:
+      - third-party-login-controller
+      operationId: completeByVoiceOtp
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: otp
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: otpKey
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: User-Agent
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: OperId
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/completeThirdPartyBySms:
+    put:
+      tags:
+      - third-party-login-controller
+      operationId: completeBySms_2
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: OperId
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /verifyCode/sms:
+    post:
+      tags:
+      - phone-verify-code-controller
+      operationId: generatePhoneVerifyCode
+      parameters:
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Channel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: User-Agent
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Sporty-Referer
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: bizType
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /verifyCode/call:
+    post:
+      tags:
+      - phone-verify-code-controller
+      operationId: generatePhoneVerifyCall
+      parameters:
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspPhoneVerifyCodeResVo'
+  /patron/inner/marketingPartnerStatistics/calNewDepositorNum:
+    post:
+      tags:
+      - marketing-partner-statistics-controller
+      operationId: calNewDepositorNum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListNumStatisticsEntity'
+  /patron/inner/marketingCommission/calSignupNumWithUserIds:
+    post:
+      tags:
+      - marketing-commission-controller
+      operationId: calSignupNumWithUserIds
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListNumStatisticsEntity'
+  /patron/inner/marketingCommission/calActivePlayer:
+    post:
+      tags:
+      - marketing-commission-controller
+      operationId: calActivePlayer
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListNumStatisticsEntity'
+  /ms/user/unblockOtp:
+    post:
+      tags:
+      - user-manage-ms-controller
+      operationId: unblockOtp
+      parameters:
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phoneCountry
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: verifyType
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /ms/user/resetExclusionEndDate:
+    post:
+      tags:
+      - user-manage-ms-controller
+      operationId: resetUserSelfExclusionTime
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: reason
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /ms/user/removeExclusionEndDate:
+    post:
+      tags:
+      - user-manage-ms-controller
+      operationId: removeUserSelfExclusionTime
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: reason
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /ms/user/phones:
+    post:
+      tags:
+      - user-query-ms-controller
+      operationId: findPhoneInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListUserPhoneInfoVo'
+  /ms/user/insertNote:
+    post:
+      tags:
+      - user-note-ms-controller
+      operationId: insertNote
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: message
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: lastUpdateUserName
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /ms/push/reloadbalance:
+    post:
+      tags:
+      - push-controller
+      operationId: reloadBalance
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /ms/loadbalancer/prefer/setMaxActiveRequestsCount:
+    post:
+      tags:
+      - custom-availability-filtering-rule-with-prefer-controller
+      operationId: setMaxActiveRequestsCount
+      parameters:
+      - name: maxActiveRequestsCount
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+  /ms/loadbalancer/prefer/remove:
+    post:
+      tags:
+      - custom-availability-filtering-rule-with-prefer-controller
+      operationId: removeFromPreferSet
+      parameters:
+      - name: server
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /ms/loadbalancer/prefer/add:
+    post:
+      tags:
+      - custom-availability-filtering-rule-with-prefer-controller
+      operationId: addToPreferSet
+      parameters:
+      - name: server
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /ms/gt/refresh:
+    post:
+      tags:
+      - golden-race-token-ms-controller
+      operationId: refreshToken_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: OK
+  /ms/account/config/matchNotices:
+    post:
+      tags:
+      - user-query-ms-controller
+      operationId: getNoticeOpenUserIds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListString'
+  /ms/account/addAndActive:
+    post:
+      tags:
+      - user-sign-ms-controller
+      operationId: register
+      parameters:
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: platform
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspString'
+  /kyc/simple/submit:
+    post:
+      tags:
+      - simple-kyc-requirement-submission-controller
+      operationId: submitRequirement
+      parameters:
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: token
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: object
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /favoriteMarkets/sportMarketId:
+    post:
+      tags:
+      - favorite-markets-controller
+      operationId: addMarketId
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SportMarketVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+    delete:
+      tags:
+      - favorite-markets-controller
+      operationId: deleteMarketId
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SportMarketVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /dob/verify:
+    post:
+      tags:
+      - dob-controller
+      operationId: verifyDateOfBirth
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DateOfBirthVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspBvnStatusVO'
+  /dob/verifiedUsers:
+    post:
+      tags:
+      - dob-controller
+      operationId: getVerifiedUsers
+      parameters:
+      - name: date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListString'
+  /dob/user:
+    post:
+      tags:
+      - dob-controller
+      operationId: getDobData
+      parameters:
+      - name: userId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspBvnInfoVO'
+  /dob/status:
+    post:
+      tags:
+      - dob-controller
+      operationId: getDateOfBirthVerifyStatus
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspBvnStatusVO'
+  /dob/resetFailureCount:
+    post:
+      tags:
+      - dob-controller
+      operationId: resetFailureCount
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /command/updateConfig:
+    post:
+      tags:
+      - refresh-command-handle-controller
+      operationId: updateConfig_1
+      responses:
+        "200":
+          description: OK
+  /cipher:
+    post:
+      tags:
+      - account-cipher-controller
+      operationId: registerDevice
+      parameters:
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: deviceId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /cipher/accounts:
+    post:
+      tags:
+      - account-cipher-controller
+      operationId: saveAccountCipher
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Create'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspResult'
+  /cipher/accounts/users/search:
+    post:
+      tags:
+      - account-cipher-controller
+      operationId: searchAccountsByUserIds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListResult'
+  /cipher/accounts/unbind-push-device:
+    post:
+      tags:
+      - account-cipher-controller
+      operationId: unbindPushDevice
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: deviceId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspVoid'
+  /base/cipher:
+    post:
+      tags:
+      - biz-trans-cipher-controller
+      operationId: registerTransportCipher
+      parameters:
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: deviceId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account:
+    post:
+      tags:
+      - register-controller
+      operationId: register_1
+      parameters:
+      - name: registerUser
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/RegisterUser'
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Channel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: User-Agent
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Sporty-Referer
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /accountNoSendMsg:
+    post:
+      tags:
+      - register-controller
+      operationId: registerNoSendingMsg
+      parameters:
+      - name: registerUser
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/RegisterUser'
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Channel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: User-Agent
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Sporty-Referer
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/token/check:
+    post:
+      tags:
+      - account-center-controller
+      operationId: checkToken
+      parameters:
+      - name: accessTokenId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/thirdParty:
+    post:
+      tags:
+      - third-party-login-controller
+      operationId: thirdPartyLogin
+      parameters:
+      - name: thirdPartyToken
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Channel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: User-Agent
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/otp/pushOtpMsgs:
+    post:
+      tags:
+      - otp-code-controller
+      operationId: pushMessages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/inviteCode:
+    post:
+      tags:
+      - register-controller
+      operationId: setInviteCode
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: inviteCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: creativeId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: source
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/info/withdrawpin:
+    get:
+      tags:
+      - withdraw-pin-controller
+      operationId: getStatus_1
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspWithdrawPINStatusVO'
+    post:
+      tags:
+      - withdraw-pin-controller
+      operationId: createCode
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: code
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: key
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: usage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspWithdrawPinActionResultVO'
+  /account/info/withdrawpin/verify:
+    post:
+      tags:
+      - withdraw-pin-controller
+      operationId: verifyCode
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: code
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: key
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspWithdrawPINVerifyResultVO'
+  /account/info/withdrawpin/usage:
+    post:
+      tags:
+      - withdraw-pin-controller
+      operationId: resetUsage
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: pinToken
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: usage
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspWithdrawPinActionResultVO'
+  /account/info/withdrawpin/reset:
+    post:
+      tags:
+      - withdraw-pin-controller
+      operationId: resetCode
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: pinToken
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: code
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: key
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: usage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspWithdrawPinActionResultVO'
+  /account/info/withdrawpin/otp/verify:
+    post:
+      tags:
+      - withdraw-pin-controller
+      operationId: verifyOTP
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisableWithdrawPinOtpVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+      deprecated: true
+  /account/info/withdrawpin/otp/validate:
+    post:
+      tags:
+      - withdraw-pin-controller
+      operationId: validateOtp
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisableWithdrawPinOtpVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspWithdrawPinActionResultVO'
+  /account/info/withdrawpin/disable:
+    post:
+      tags:
+      - withdraw-pin-controller
+      operationId: removeCode
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: code
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: key
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+      deprecated: true
+  /account/info/withdraw/fingerprint/verify:
+    post:
+      tags:
+      - withdraw-fingerprint-controller
+      operationId: verifyFingerprintToken
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspVerifyResultVO'
+  /account/info/withdraw/fingerprint/status:
+    post:
+      tags:
+      - withdraw-fingerprint-controller
+      operationId: fingerprintStatus
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspVoid'
+  /account/info/selfExclusion:
+    post:
+      tags:
+      - account-center-controller
+      operationId: setSelfExclusion
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelfExclusionVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/info/preWithdraw/otp/validate:
+    post:
+      tags:
+      - withdraw-pin-controller
+      operationId: validatePreWithdrawOTP
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisableWithdrawPinOtpVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/create:
+    post:
+      tags:
+      - register-controller
+      operationId: registerOneStep
+      parameters:
+      - name: registerUser
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/RegisterUser'
+      - name: phoneVerifyCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: token
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Channel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: User-Agent
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Sporty-Referer
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/cert/update:
+    post:
+      tags:
+      - account-center-controller
+      operationId: updateUserCert
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCertInfoVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspUserCertInfoVO'
+  /account/cert/confirm:
+    post:
+      tags:
+      - account-center-controller
+      operationId: confirmUserCert
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCertInfoVO'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspUserCertInfoVO'
+  /accessToken:
+    post:
+      tags:
+      - login-controller
+      operationId: login
+      parameters:
+      - name: credential
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/PhonePasswordCredential'
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Sporty-Referer
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /youxing-account:
+    get:
+      tags:
+      - youxin-login-controller
+      operationId: goldenRaceLogin
+      parameters:
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: OperId
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /version:
+    get:
+      tags:
+      - version-controller
+      operationId: version
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/VersionVO'
+  /verifyCode/status:
+    get:
+      tags:
+      - phone-verify-code-controller
+      operationId: checkOTPStatus
+      parameters:
+      - name: uid
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: bizType
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /v1/inner/task/dailyTask/syncUserFromGlobalService:
+    get:
+      tags:
+      - sporty-global-user-sync-task-controller
+      operationId: syncUserFromGlobalService
+      parameters:
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /v1/inner/task/dailyTask/syncSingleGlobalUser:
+    get:
+      tags:
+      - sporty-global-user-sync-task-controller
+      operationId: syncSingleGlobalUser
+      parameters:
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /v1/inner/global/getUserPassword:
+    get:
+      tags:
+      - global-controller
+      operationId: getUserPassword
+      parameters:
+      - name: uid
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableRspString'
+  /v1/inner/global/getUserByPhone:
+    get:
+      tags:
+      - global-controller
+      operationId: getUserByPhone
+      parameters:
+      - name: phoneCountryCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableRspUserVO'
+  /s-soccer-account:
+    get:
+      tags:
+      - sporty-soccer-login-controller
+      operationId: sportySoccerLogin
+      parameters:
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: OperId
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /preferences/selectedSummary:
+    get:
+      tags:
+      - user-preference-controller
+      operationId: getPrefSummary
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspPreferenceSummaryVO'
+  /phone/check:
+    get:
+      tags:
+      - tool-controller
+      operationId: checkPhone
+      parameters:
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /phone/checkStatus:
+    get:
+      tags:
+      - tool-controller
+      operationId: checkPhoneAndAccountStatus
+      parameters:
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /patron/inner/user/sqlSingleItem:
+    get:
+      tags:
+      - user-controller
+      operationId: sqlSingleItem
+      parameters:
+      - name: sql
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /patron/inner/user/selectBySQL:
+    get:
+      tags:
+      - user-controller
+      operationId: selectBySQL
+      parameters:
+      - name: sql
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /patron/inner/user/selectByCondition:
+    get:
+      tags:
+      - user-controller
+      operationId: selectByCondition
+      parameters:
+      - name: sql
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /patron/inner/marketingResourceStatistics/calSourceSignupNum:
+    get:
+      tags:
+      - marketing-resource-statistics-controller
+      operationId: calSourceSignupNum
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListCommonStatisticsEntity'
+  /patron/inner/marketingResourceStatistics/calSourceNewSignupDepositNumAndValue:
+    get:
+      tags:
+      - marketing-resource-statistics-controller
+      operationId: calSourceNewSignupDepositNumAndValue
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListCommonStatisticsEntity'
+  /patron/inner/marketingResourceStatistics/calSourceNewSignupBettorNum:
+    get:
+      tags:
+      - marketing-resource-statistics-controller
+      operationId: calSourceNewSignupBettorNum
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListCommonStatisticsEntity'
+  /patron/inner/marketingResourceStatistics/calCreativeSignupNum:
+    get:
+      tags:
+      - marketing-resource-statistics-controller
+      operationId: calCreativeSignupNum
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListCommonStatisticsEntity'
+  /patron/inner/marketingResourceStatistics/calCreativeNewSignupDepositNumAndValue:
+    get:
+      tags:
+      - marketing-resource-statistics-controller
+      operationId: calCreativeNewSignupDepositNumAndValue
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListCommonStatisticsEntity'
+  /patron/inner/marketingResourceStatistics/calCreativeNewSignupBettorNum:
+    get:
+      tags:
+      - marketing-resource-statistics-controller
+      operationId: calCreativeNewSignupBettorNum
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListCommonStatisticsEntity'
+  /patron/inner/marketingPartnerStatistics/calUserSignupNum:
+    get:
+      tags:
+      - marketing-partner-statistics-controller
+      operationId: calUserSignupNum
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspInteger'
+  /patron/inner/marketingPartnerStatistics/calTransferCommission:
+    get:
+      tags:
+      - marketing-partner-statistics-controller
+      operationId: calTransferCommission
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListTransferCommissionEntity'
+  /patron/inner/marketingPartnerStatistics/calSignupNum:
+    get:
+      tags:
+      - marketing-partner-statistics-controller
+      operationId: calSignupNum
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListNumStatisticsEntity'
+  /patron/inner/marketingPartnerStatistics/calNewBettorNum:
+    get:
+      tags:
+      - marketing-partner-statistics-controller
+      operationId: calNewBettorNum
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListNumStatisticsEntity'
+  /patron/inner/marketingPartnerStatistics/calDepositValue:
+    get:
+      tags:
+      - marketing-partner-statistics-controller
+      operationId: calDepositValue
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListValueStatisticsEntity'
+  /patron/inner/marketingPartnerStatistics/calBettorNum:
+    get:
+      tags:
+      - marketing-partner-statistics-controller
+      operationId: calBettorNum
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListNumStatisticsEntity'
+  /patron/inner/getUserIdsFromPartnerId:
+    get:
+      tags:
+      - partner-related-controller
+      operationId: getUserIdsFromPartnerId
+      parameters:
+      - name: partnerId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListString'
+  /patron/inner/customerBehaviorAnalysis/selectCustomerRegisterPhone:
+    get:
+      tags:
+      - customer-behavior-analysis-controller
+      operationId: selectCustomerRegisterPhone
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: readOnlyMode
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /patron/inner/customerBehaviorAnalysis/selectCustomerRegisterInfoFromAddiInfoTable:
+    get:
+      tags:
+      - customer-behavior-analysis-controller
+      operationId: selectCustomerRegisterInfoFromAddiInfoTable
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: readOnlyMode
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /patron/inner/customerBehaviorAnalysis/selectCustomerRegisterCount:
+    get:
+      tags:
+      - customer-behavior-analysis-controller
+      operationId: selectCustomerRegisterCount
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: readOnlyMode
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspLong'
+  /patron/inner/customerBehaviorAnalysis/selectCustomerLoginCount:
+    get:
+      tags:
+      - customer-behavior-analysis-controller
+      operationId: selectCustomerLoginCount
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: end
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: readOnlyMode
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspLong'
+  /patron/inner/customerBehaviorAnalysis/selectCustomerLastLoginTime:
+    get:
+      tags:
+      - customer-behavior-analysis-controller
+      operationId: selectCustomerLastLoginTime
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: readOnlyMode
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /patron/inner/customerBehaviorAnalysis/selectCustomerIdByCodeAndPhone:
+    get:
+      tags:
+      - customer-behavior-analysis-controller
+      operationId: selectCustomerIdByCodeAndPhone
+      parameters:
+      - name: code
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: readOnlyMode
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /patron/inner/customerBehaviorAnalysis/checkCustomerIdExist:
+    get:
+      tags:
+      - customer-behavior-analysis-controller
+      operationId: checkCustomerIdExist
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: readOnlyMode
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspLong'
+  /patron/inner/annualSummary/getRegistTime:
+    get:
+      tags:
+      - annual-summary-controller
+      operationId: getRegistTime
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: readOnlyMode
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /patron/inner/analyticsEvent/sync:
+    get:
+      tags:
+      - analytics-event-task-controller
+      operationId: syncEventData
+      parameters:
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /patron/inner/analyticsEvent/sync/update:
+    get:
+      tags:
+      - analytics-event-task-controller
+      operationId: updateDataWithoutLandingPagePath
+      parameters:
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /password/check:
+    get:
+      tags:
+      - account-center-controller
+      operationId: checkPassword
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: oldPassword
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /operatorInfo:
+    get:
+      tags:
+      - operator-info-controller
+      operationId: getOperatorInfo
+      parameters:
+      - name: appId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /ms/yx/user:
+    get:
+      tags:
+      - youxin-ms-controller
+      operationId: getUserIdByToken
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspString'
+  /ms/yx/userInfo:
+    get:
+      tags:
+      - youxin-ms-controller
+      operationId: getUserInfoByToken
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspYouxinUserInfo'
+  /ms/yx/token:
+    get:
+      tags:
+      - youxin-ms-controller
+      operationId: getTokenByUserId
+      parameters:
+      - name: platform
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: deviceId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspString'
+  /ms/virtualGame/userInfo:
+    get:
+      tags:
+      - virtual-game-ms-controller
+      operationId: getUserInfoByAccessToken
+      parameters:
+      - name: accessToken
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspYouxinUserInfo'
+  /ms/virtualGame/userInfoById:
+    get:
+      tags:
+      - virtual-game-ms-controller
+      operationId: getUserInfoByUserId
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspYouxinUserInfo'
+  /ms/users:
+    get:
+      tags:
+      - user-query-ms-controller
+      operationId: findUsers
+      parameters:
+      - name: userId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNo
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspPageInfoUserInfoVo'
+  /ms/users/stats:
+    get:
+      tags:
+      - user-query-ms-controller
+      operationId: getClientInfoStatsByCreateTime
+      parameters:
+      - name: clientInfo
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListClientInfoStatisticsVO'
+  /ms/users/selfExclusion:
+    get:
+      tags:
+      - user-query-ms-controller
+      operationId: getSelfExclusionByUserIdOrPhone
+      parameters:
+      - name: userId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspSelfExclusionVo'
+  /ms/users/selfExclusionHistory:
+    get:
+      tags:
+      - user-query-ms-controller
+      operationId: getSelfExclusionHistoryByUserIdOrPhone
+      parameters:
+      - name: userId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspSelfExclusionVo'
+  /ms/users/search/create-time:
+    get:
+      tags:
+      - user-query-ms-controller
+      operationId: searchUsersByCreateTime
+      parameters:
+      - name: startTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListUserVO'
+  /ms/users/active:
+    get:
+      tags:
+      - user-query-ms-controller
+      operationId: getAllActiveUsers
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListString'
+  /ms/userId:
+    get:
+      tags:
+      - user-query-ms-controller
+      operationId: findUserId
+      parameters:
+      - name: phoneCountryCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspString'
+  /ms/user/phone:
+    get:
+      tags:
+      - user-query-ms-controller
+      operationId: findPhoneInfo_1
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspUserPhoneInfoVo'
+  /ms/user/getNote:
+    get:
+      tags:
+      - user-note-ms-controller
+      operationId: getUserNoteByUserId
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListUserNoteVO'
+  /ms/user/device:
+    get:
+      tags:
+      - user-device-query-ms-controller
+      operationId: findUserDevice
+      parameters:
+      - name: uid
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspOperationDeviceVo'
+  /ms/user/blockedOtp:
+    get:
+      tags:
+      - user-manage-ms-controller
+      operationId: getBlockedOtp
+      parameters:
+      - name: phone
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phoneCountry
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: verifyType
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListBlockedOtpVo'
+  /ms/s-soccer/user:
+    get:
+      tags:
+      - sporty-soccer-ms-controller
+      operationId: getUserIdByToken_1
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspString'
+  /ms/s-soccer/userInfo:
+    get:
+      tags:
+      - sporty-soccer-ms-controller
+      operationId: getUserInfoByToken_1
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspYouxinUserInfo'
+  /ms/s-soccer/token:
+    get:
+      tags:
+      - sporty-soccer-ms-controller
+      operationId: getTokenByUserId_1
+      parameters:
+      - name: platform
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: deviceId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspString'
+  /ms/push/list-off-users:
+    get:
+      tags:
+      - push-controller
+      operationId: getPushTurnedOffUsers
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListString'
+  /ms/pin:
+    get:
+      tags:
+      - user-query-ms-controller
+      operationId: isPinValid
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: pin
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspBoolean'
+  /ms/phoneVerifyCode/sentNumber:
+    get:
+      tags:
+      - phone-verify-code-ms-controller
+      operationId: getSentNumberToday
+      parameters:
+      - name: countryCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: businessType
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspLong'
+  /ms/phoneVerifyCode/check:
+    get:
+      tags:
+      - phone-verify-code-ms-controller
+      operationId: checkVerifyCode
+      parameters:
+      - name: countryCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: verifyCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: businessType
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspBoolean'
+  /ms/phoneVerifyCode/checkSentStatus:
+    get:
+      tags:
+      - sms-to-receive-code-ms-controller
+      operationId: checkVerifyCode_1
+      parameters:
+      - name: countryCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: verifyCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: businessType
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspBoolean'
+  /ms/operator:
+    get:
+      tags:
+      - operator-ms-controller
+      operationId: getById
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspOperatorInfo'
+  /ms/loadbalancer/prefer/getMaxActiveRequestsCount:
+    get:
+      tags:
+      - custom-availability-filtering-rule-with-prefer-controller
+      operationId: getMaxActiveRequestsCount
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int32
+  /ms/loadbalancer/prefer/getAll:
+    get:
+      tags:
+      - custom-availability-filtering-rule-with-prefer-controller
+      operationId: getPreferSet
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                uniqueItems: true
+                type: array
+                items:
+                  type: object
+  /ms/gt/user:
+    get:
+      tags:
+      - golden-race-token-ms-controller
+      operationId: getUserIdByToken_2
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspString'
+  /ms/gt/userInfo:
+    get:
+      tags:
+      - golden-race-token-ms-controller
+      operationId: getUserInfoByToken_2
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspGolderRaceUserInfo'
+  /ms/gt/token:
+    get:
+      tags:
+      - golden-race-token-ms-controller
+      operationId: getTokenByUserId_2
+      parameters:
+      - name: platform
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: deviceId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspString'
+    delete:
+      tags:
+      - golden-race-token-ms-controller
+      operationId: invalidToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: OK
+  /ms/cipher:
+    get:
+      tags:
+      - account-cipher-ms-controller
+      operationId: getCipherByUsrId
+      parameters:
+      - name: ursId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspString'
+  /ms/bizCipher:
+    get:
+      tags:
+      - biz-trans-cipher-ms-controller
+      operationId: getCipherByUsrId_1
+      parameters:
+      - name: transId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspString'
+  /ms/account/info/withdrawpin:
+    get:
+      tags:
+      - withdraw-pin-ms-controller
+      operationId: getStatus
+      parameters:
+      - name: userId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspWithdrawPINStatusVO'
+    delete:
+      tags:
+      - withdraw-pin-ms-controller
+      operationId: removeCode_1
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /ms/account/generalToken:
+    get:
+      tags:
+      - user-sign-ms-controller
+      operationId: getTokenInfo
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspUpgoingVerifyCodeVo'
+  /mail/verify/check:
+    get:
+      tags:
+      - mail-verify-controller
+      operationId: checkMail
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /mail/verify/checkAndGet:
+    get:
+      tags:
+      - mail-verify-controller
+      operationId: checkMailAndGetAccountInfo
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /mail/verify/bind:
+    get:
+      tags:
+      - mail-verify-controller
+      operationId: bind
+      parameters:
+      - name: token
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /mail/verify/bindRemedy:
+    get:
+      tags:
+      - mail-verify-controller
+      operationId: bindRemedy
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /locations:
+    get:
+      tags:
+      - location-controller
+      operationId: locations
+      parameters:
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /kyc/simple/requirements:
+    get:
+      tags:
+      - simple-kyc-requirement-submission-controller
+      operationId: listRequirements
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListSimpleKycRequirementVO'
+  /kyc/simple/requirements/id/types:
+    get:
+      tags:
+      - simple-kyc-requirement-submission-controller
+      operationId: listIdTypes
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListIdTypesVO'
+  /kyc/simple/config:
+    get:
+      tags:
+      - simple-kyc-requirement-submission-controller
+      operationId: getConfig
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspBoolean'
+  /inner/prestop:
+    get:
+      tags:
+      - version-controller
+      operationId: prestop
+      responses:
+        "200":
+          description: OK
+  /inner/findUpdatedUsers:
+    get:
+      tags:
+      - user-inner-controller
+      operationId: findUpdatedUsers
+      parameters:
+      - name: updatedFrom
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: updatedTo
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableRspListUserTO'
+  /goldenrace-account:
+    get:
+      tags:
+      - golden-race-login-controller
+      operationId: goldenRaceLogin_1
+      parameters:
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: OperId
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /goldenrace-account-v4:
+    get:
+      tags:
+      - golden-race-v-4-login-controller
+      operationId: goldenRaceLogin_2
+      parameters:
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: OperId
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /geo-ip/refresh:
+    get:
+      tags:
+      - geo-ip-controller
+      operationId: refreshGeoData
+      responses:
+        "200":
+          description: OK
+  /geo-ip/country:
+    get:
+      tags:
+      - geo-ip-controller
+      operationId: getIpCountry
+      parameters:
+      - name: address
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /favoriteMarkets/marketIds:
+    get:
+      tags:
+      - favorite-markets-controller
+      operationId: getFavoriteMarketIds
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: sportId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: productId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListInteger'
+  /crossCountry/isNicknameExists:
+    get:
+      tags:
+      - cross-country-controller
+      operationId: isNicknameExists
+      parameters:
+      - name: nickname
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspBoolean'
+  /crossCountry/isMailBind:
+    get:
+      tags:
+      - cross-country-controller
+      operationId: isMailBind
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspBoolean'
+  /country/list:
+    get:
+      tags:
+      - country-info-controller
+      operationId: getAvailableCountries
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListCountryVO'
+  /cipher/accounts/users/{userId}:
+    get:
+      tags:
+      - account-cipher-controller
+      operationId: getUserAccount
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListResult'
+  /check:
+    get:
+      tags:
+      - login-controller
+      operationId: checkIsForbidden
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /checkproperties:
+    get:
+      tags:
+      - version-controller
+      operationId: checkProperties
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PropertiesVO'
+  /backend/account/info:
+    get:
+      tags:
+      - account-center-controller
+      operationId: getAccountInfoBackend
+      parameters:
+      - name: phone
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspUserInfoBackend'
+  /backend/account/active:
+    get:
+      tags:
+      - account-center-controller
+      operationId: getAccountInfoIsActiveBackend
+      parameters:
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspBoolean'
+  /account/transfer/availability:
+    get:
+      tags:
+      - account-center-controller
+      operationId: getTransferAvailability
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspTransferAvailabilityVO'
+  /account/token/validate:
+    get:
+      tags:
+      - account-center-controller
+      operationId: validateToken
+      parameters:
+      - name: accessTokenId
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspLoginDataVO'
+  /account/registrationDate:
+    get:
+      tags:
+      - account-center-controller
+      operationId: getRegistrationDate
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspDate'
+  /account/otp/voice/acquireVoiceOtp:
+    get:
+      tags:
+      - voice-otp-controller
+      operationId: acquireVoiceOtp
+      parameters:
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: bizType
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/otp/status:
+    get:
+      tags:
+      - otp-code-controller
+      operationId: queryOtpCodeStatus
+      parameters:
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: token
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: otpCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: bizType
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/otp/acquireOtpCode:
+    get:
+      tags:
+      - otp-code-controller
+      operationId: acquireOtpCode
+      parameters:
+      - name: token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phoneCountryCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: bizType
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ClientId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: PhoneModel
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Fingerprint
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: AppVersion
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: ApiLevel
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRsp'
+  /account/info:
+    get:
+      tags:
+      - account-center-controller
+      operationId: getAccountBasicInfo
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspAccountProfile'
+  /account/info/withdrawpin/otp/status:
+    get:
+      tags:
+      - withdraw-pin-controller
+      operationId: checkOTPStatus_1
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: bizType
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/info/withdrawpin/otp/acquire:
+    get:
+      tags:
+      - withdraw-pin-controller
+      operationId: acquireWithdrawPINOTP
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: bizType
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/info/withdraw/fingerprint/token:
+    get:
+      tags:
+      - withdraw-fingerprint-controller
+      operationId: createFingerprintToken
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspFingerprintResultVO'
+  /account/info/withdraw/fingerprint/fingerprinted:
+    get:
+      tags:
+      - withdraw-fingerprint-controller
+      operationId: fingerprinted
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspBoolean'
+  /account/info/preWithdraw/otp/acquire:
+    get:
+      tags:
+      - withdraw-pin-controller
+      operationId: acquirePreWithdrawOTP
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: bizType
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/info/latestOperation:
+    get:
+      tags:
+      - account-center-controller
+      operationId: getLatestUserOperation
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspUserLatestOperationVO'
+  /account/info/changes:
+    get:
+      tags:
+      - account-center-controller
+      operationId: getUserChanges
+      parameters:
+      - name: userId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: countryCode
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListUserChangeVo'
+  /account/create/ignoreVcode:
+    get:
+      tags:
+      - register-controller
+      operationId: isIgnoreVcode
+      parameters:
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: Channel
+        in: header
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /account/config/matchNotice:
+    get:
+      tags:
+      - account-center-controller
+      operationId: getMatchNotice
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspInteger'
+  /account/cert/status:
+    get:
+      tags:
+      - account-center-controller
+      operationId: getUserCertStatus
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspUserCertInfoVO'
+  /account/cert/info:
+    get:
+      tags:
+      - account-center-controller
+      operationId: getUserCert
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspUserCertInfoVO'
+  /account/cert/history:
+    get:
+      tags:
+      - account-center-controller
+      operationId: getUserCertHistory
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspListUserCertInfoVO'
+  /accessToken/extend:
+    get:
+      tags:
+      - login-controller
+      operationId: extend
+      parameters:
+      - name: uid
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: refreshToken
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: location
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+  /accessToken/delete:
+    delete:
+      tags:
+      - login-controller
+      operationId: logout
+      parameters:
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: Platform
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: DeviceId
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseRspObject'
+components:
+  schemas:
+    BaseRspObject:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: object
+    PreferenceTournamentCompetitorsVO:
+      type: object
+      properties:
+        tournamentId:
+          type: string
+        competitorIds:
+          type: array
+          items:
+            type: string
+    PreferenceSportMarketsVO:
+      type: object
+      properties:
+        sportId:
+          type: string
+        marketIds:
+          type: array
+          items:
+            type: string
+    PreferenceOddsRangeVO:
+      type: object
+      properties:
+        min:
+          minimum: 0
+          type: number
+        max:
+          minimum: 0
+          type: number
+    PreferenceDefaultStakeVO:
+      type: object
+      properties:
+        defaultStake:
+          minimum: 0
+          type: integer
+          format: int64
+        quickAddStake1:
+          minimum: 0
+          type: integer
+          format: int64
+        quickAddStake2:
+          minimum: 0
+          type: integer
+          format: int64
+        quickAddStake3:
+          minimum: 0
+          type: integer
+          format: int64
+    AccountProfile:
+      type: object
+      properties:
+        phoneCountryCode:
+          type: string
+        phone:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        nickname:
+          type: string
+        birthday:
+          type: string
+        gender:
+          type: integer
+          format: int32
+        email:
+          type: string
+        avatar:
+          type: string
+        locationId:
+          type: integer
+          format: int64
+        state:
+          type: string
+        area:
+          type: string
+        editableFirstName:
+          type: boolean
+        editableLastName:
+          type: boolean
+        editableBirthday:
+          type: boolean
+        language:
+          type: string
+    MailSendVO:
+      type: object
+      properties:
+        mail:
+          type: string
+    BaseRspPhoneVerifyCodeResVo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PhoneVerifyCodeResVo'
+    PhoneVerifyCodeResVo:
+      type: object
+      properties:
+        token:
+          type: string
+        smsNumber:
+          type: string
+        msgContent:
+          type: string
+        remainMsgNum:
+          type: integer
+          format: int32
+    BaseRspListNumStatisticsEntity:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/NumStatisticsEntity'
+    NumStatisticsEntity:
+      type: object
+      properties:
+        partnerId:
+          type: string
+        num:
+          type: integer
+          format: int32
+    BaseRspListUserPhoneInfoVo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserPhoneInfoVo'
+    UserPhoneInfoVo:
+      type: object
+      properties:
+        id:
+          type: string
+        phoneCountryCode:
+          type: string
+        phone:
+          type: string
+    BaseRspListString:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            type: string
+    BaseRspString:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: string
+    SportMarketVO:
+      required:
+      - marketId
+      - productId
+      - sportId
+      type: object
+      properties:
+        sportId:
+          pattern: ^sr:sport:.*
+          type: string
+        productId:
+          maximum: 3
+          minimum: 1
+          type: integer
+          format: int32
+        marketId:
+          maximum: 2000
+          minimum: 1
+          type: integer
+          format: int32
+    DateOfBirthVO:
+      type: object
+      properties:
+        birthday:
+          type: string
+          format: date-time
+        bvn:
+          type: string
+        skipCounter:
+          type: boolean
+    BaseRspBvnStatusVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/BvnStatusVO'
+    BvnStatusVO:
+      type: object
+      properties:
+        result:
+          type: integer
+          format: int32
+        message:
+          type: string
+    BaseRspBvnInfoVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/BvnInfoVO'
+    BvnInfoVO:
+      type: object
+      properties:
+        id:
+          type: string
+        bvn:
+          type: string
+        userId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dob:
+          type: string
+        birthDate:
+          type: string
+        mobile:
+          type: string
+        verifyFailureCount:
+          type: integer
+          format: int32
+        failureReason:
+          type: integer
+          format: int32
+        failedBVN:
+          type: string
+    Create:
+      type: object
+      properties:
+        deviceId:
+          type: string
+        platform:
+          type: string
+        appId:
+          type: string
+        pushDevice:
+          type: string
+        notificationDevice:
+          type: string
+        userId:
+          type: string
+        channel:
+          type: string
+        appVersion:
+          type: string
+    BaseRspResult:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Result'
+    Result:
+      type: object
+      properties:
+        id:
+          type: string
+        deviceId:
+          type: string
+        platform:
+          type: string
+        appId:
+          type: string
+        pushDevice:
+          type: string
+        notificationDevice:
+          type: string
+        userId:
+          type: string
+        channel:
+          type: string
+        appVersion:
+          type: string
+        isDel:
+          type: boolean
+        updateTime:
+          type: string
+          format: date-time
+        createTime:
+          type: string
+          format: date-time
+    BaseRspListResult:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
+    BaseRspVoid:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: object
+    RegisterUser:
+      type: object
+      properties:
+        phoneCountryCode:
+          type: string
+        phone:
+          type: string
+        password:
+          type: string
+    BaseRspWithdrawPinActionResultVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/WithdrawPinActionResultVO'
+    WithdrawPinActionResultVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        pinToken:
+          type: string
+        usage:
+          type: integer
+          format: int32
+        responseMessage:
+          type: string
+    BaseRspWithdrawPINVerifyResultVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/WithdrawPINVerifyResultVO'
+    WithdrawPINVerifyResultVO:
+      type: object
+      properties:
+        result:
+          type: string
+        unmatchedTimes:
+          type: integer
+          format: int32
+        pinToken:
+          type: string
+    DisableWithdrawPinOtpVO:
+      type: object
+      properties:
+        otpCode:
+          type: string
+        bizType:
+          type: string
+        verifyCodeSource:
+          type: string
+          enum:
+          - VOICE
+          - SMS
+    BaseRspVerifyResultVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/VerifyResultVO'
+    VerifyResultVO:
+      type: object
+      properties:
+        message:
+          type: string
+        valid:
+          type: boolean
+    SelfExclusionVO:
+      type: object
+      properties:
+        selfExclusionMinutes:
+          type: integer
+          format: int32
+    UserCertInfoVO:
+      type: object
+      properties:
+        userId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        dataSource:
+          type: integer
+          format: int32
+        status:
+          type: integer
+          format: int32
+        operator:
+          type: string
+        bvnStatus:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        updateTime:
+          type: string
+          format: date-time
+    BaseRspUserCertInfoVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/UserCertInfoVO'
+    PhonePasswordCredential:
+      type: object
+      properties:
+        phoneCountryCode:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        credentialType:
+          type: string
+        id:
+          type: string
+    VersionVO:
+      type: object
+      properties:
+        version:
+          type: string
+    PageableRspString:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: string
+        hasNextPage:
+          type: boolean
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        pageCount:
+          type: integer
+          format: int32
+    PageableRspUserVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/UserVO'
+        hasNextPage:
+          type: boolean
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        pageCount:
+          type: integer
+          format: int32
+    UserVO:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        phoneCountryCode:
+          type: string
+        phone:
+          type: string
+        countryCode:
+          type: string
+        nickname:
+          type: string
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        birthday:
+          type: string
+          format: date-time
+        status:
+          type: integer
+          format: int32
+        isDel:
+          type: boolean
+        createTime:
+          type: string
+          format: date-time
+        updateTime:
+          type: string
+          format: date-time
+    BaseRspListPreferenceTournamentCompetitorsVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PreferenceTournamentCompetitorsVO'
+    BaseRspPreferenceSummaryVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PreferenceSummaryVO'
+    IdNameVO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    PreferenceSummaryVO:
+      type: object
+      properties:
+        sports:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserPreferenceSportVO'
+        markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserPreferenceMarketVO'
+        stake:
+          $ref: '#/components/schemas/PreferenceDefaultStakeVO'
+        oddsRange:
+          $ref: '#/components/schemas/PreferenceOddsRangeVO'
+    UserPreferenceCategoryVO:
+      type: object
+      properties:
+        id:
+          type: string
+        categoryName:
+          type: string
+    UserPreferenceMarketVO:
+      type: object
+      properties:
+        sportId:
+          type: string
+        markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdNameVO'
+    UserPreferenceSportVO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        tournaments:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserPreferenceTournamentVO'
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserPreferenceCategoryVO'
+    UserPreferenceTournamentVO:
+      type: object
+      properties:
+        id:
+          type: string
+        tournamentName:
+          type: string
+        leagueName:
+          type: string
+        categoryName:
+          type: string
+        competitors:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdNameVO'
+    BaseRspListPreferenceSportMarketsVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PreferenceSportMarketsVO'
+    BaseRspPreferenceOddsRangeVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PreferenceOddsRangeVO'
+    BaseRspPreferenceDefaultStakeVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PreferenceDefaultStakeVO'
+    BaseRspListCommonStatisticsEntity:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommonStatisticsEntity'
+    CommonStatisticsEntity:
+      type: object
+      properties:
+        partnerId:
+          type: string
+        resource:
+          type: string
+        num:
+          type: integer
+          format: int32
+        value:
+          type: integer
+          format: int64
+    BaseRspInteger:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: integer
+          format: int32
+    BaseRspListTransferCommissionEntity:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferCommissionEntity'
+    TransferCommissionEntity:
+      type: object
+      properties:
+        tradeCode:
+          type: string
+        goodsName:
+          type: string
+        depositCommission:
+          type: integer
+          format: int64
+        withdrawCommission:
+          type: integer
+          format: int64
+    BaseRspListValueStatisticsEntity:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValueStatisticsEntity'
+    ValueStatisticsEntity:
+      type: object
+      properties:
+        partnerId:
+          type: string
+        value:
+          type: integer
+          format: int64
+    BaseRspLong:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: integer
+          format: int64
+    BaseRspYouxinUserInfo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/YouxinUserInfo'
+    YouxinUserInfo:
+      type: object
+      properties:
+        platform:
+          type: string
+        registerChannel:
+          type: string
+        deviceId:
+          type: string
+        userId:
+          type: string
+        avatar:
+          type: string
+        name:
+          type: string
+        currency:
+          type: string
+        operId:
+          type: string
+    BaseRspPageInfoUserInfoVo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageInfoUserInfoVo'
+    PageInfoUserInfoVo:
+      type: object
+      properties:
+        pageNum:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        startRow:
+          type: integer
+          format: int32
+        endRow:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+        pages:
+          type: integer
+          format: int32
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserInfoVo'
+        prePage:
+          type: integer
+          format: int32
+        nextPage:
+          type: integer
+          format: int32
+        isFirstPage:
+          type: boolean
+        isLastPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        hasNextPage:
+          type: boolean
+        navigatePages:
+          type: integer
+          format: int32
+        navigatepageNums:
+          type: array
+          items:
+            type: integer
+            format: int32
+        navigateFirstPage:
+          type: integer
+          format: int32
+        navigateLastPage:
+          type: integer
+          format: int32
+        firstPage:
+          type: integer
+          format: int32
+          deprecated: true
+        lastPage:
+          type: integer
+          format: int32
+          deprecated: true
+    UserInfoVo:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        phoneCountryCode:
+          type: string
+        phone:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        gender:
+          type: integer
+          format: int32
+        status:
+          type: integer
+          format: int32
+        birthday:
+          type: string
+          format: date-time
+        registerIp:
+          type: string
+        registerChannel:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+    BaseRspListClientInfoStatisticsVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientInfoStatisticsVO'
+    ClientInfoStatisticsVO:
+      type: object
+      properties:
+        password:
+          type: string
+        clientInfo:
+          type: string
+        num:
+          type: integer
+          format: int32
+    BaseRspSelfExclusionVo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/SelfExclusionVo'
+    SelfExclusionVo:
+      type: object
+      properties:
+        userId:
+          type: string
+        phoneCountryCode:
+          type: string
+        phone:
+          type: string
+        exclusionStartDate:
+          type: integer
+          format: int64
+        exclusionEndDate:
+          type: integer
+          format: int64
+        resetTime:
+          type: integer
+          format: int64
+        reason:
+          type: string
+    BaseRspListUserVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserVO'
+    BaseRspUserStatus:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/UserStatus'
+    UserStatus:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: boolean
+        ttl:
+          type: integer
+          format: int64
+        reason:
+          type: string
+    BaseRspUserPhoneInfoVo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/UserPhoneInfoVo'
+    BaseRspListUserNoteVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserNoteVO'
+    UserNoteVO:
+      type: object
+      properties:
+        message:
+          type: string
+        lastUpdateUserName:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+    BaseRspOperationDeviceVo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/OperationDeviceVo'
+    OperationDeviceVo:
+      type: object
+      properties:
+        ip:
+          type: string
+        deviceId:
+          type: string
+    BaseRspListBlockedOtpVo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockedOtpVo'
+    BlockedOtpVo:
+      type: object
+      properties:
+        userId:
+          type: string
+        phoneCountryCode:
+          type: string
+        phone:
+          type: string
+        timeToUnblockMillis:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+          - BLOCKED
+          - ENABLED
+    BaseRspBoolean:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: boolean
+    BaseRspOperatorInfo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/OperatorInfo'
+    OperatorInfo:
+      type: object
+      properties:
+        currency:
+          type: string
+        country:
+          type: string
+        timezone:
+          type: string
+        language:
+          type: string
+    BaseRspGolderRaceUserInfo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/GolderRaceUserInfo'
+    GolderRaceUserInfo:
+      type: object
+      properties:
+        platform:
+          type: string
+        registerChannel:
+          type: string
+        userId:
+          type: string
+    BaseRspWithdrawPINStatusVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/WithdrawPINStatusVO'
+    Config:
+      type: object
+      properties:
+        maxUnmatchedTimes:
+          type: integer
+          format: int32
+        blockTime:
+          type: integer
+          format: int64
+    WithdrawPINStatusVO:
+      type: object
+      properties:
+        userId:
+          type: string
+        status:
+          type: string
+        usage:
+          type: integer
+          format: int32
+        leftTimeToUnblock:
+          type: integer
+          format: int64
+        config:
+          $ref: '#/components/schemas/Config'
+        unmatchedHistory:
+          type: array
+          items:
+            type: integer
+            format: int64
+        fingerprintStatus:
+          type: integer
+          format: int32
+    BaseRspUpgoingVerifyCodeVo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/UpgoingVerifyCodeVo'
+    UpgoingVerifyCodeVo:
+      type: object
+      properties:
+        token:
+          type: string
+        smsNumber:
+          type: string
+        msgContent:
+          type: string
+        phone:
+          type: string
+        phoneCountryCode:
+          type: string
+    BaseRspListSimpleKycRequirementVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimpleKycRequirementVO'
+    SimpleKycRequirementVO:
+      type: object
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+    BaseRspListIdTypesVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdTypesVO'
+    IdTypesVO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        displayName:
+          type: string
+    PageableRspListUserTO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTO'
+        hasNextPage:
+          type: boolean
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        pageCount:
+          type: integer
+          format: int32
+    UserTO:
+      type: object
+      properties:
+        id:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        phoneCountryCode:
+          type: string
+        phone:
+          type: string
+        countryCode:
+          type: string
+        nickname:
+          type: string
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        birthday:
+          type: string
+          format: date-time
+        status:
+          type: integer
+          format: int32
+        isDel:
+          type: boolean
+        createTime:
+          type: string
+          format: date-time
+        updateTime:
+          type: string
+          format: date-time
+    BaseRspListInteger:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            type: integer
+            format: int32
+    BaseRspListCountryVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CountryVO'
+    CountryVO:
+      type: object
+      properties:
+        name:
+          type: string
+        code:
+          type: string
+        icon:
+          type: string
+        defaultValue:
+          type: boolean
+        isDisabled:
+          type: boolean
+    PropertiesVO:
+      type: object
+      properties:
+        value:
+          type: string
+    BaseRspUserInfoBackend:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/UserInfoBackend'
+    UserInfoBackend:
+      type: object
+      properties:
+        userId:
+          type: string
+        phoneCountryCode:
+          type: string
+        phone:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        nickname:
+          type: string
+        avatar:
+          type: string
+        isActive:
+          type: boolean
+          deprecated: true
+    BaseRspTransferAvailabilityVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/TransferAvailabilityVO'
+    TransferAvailabilityVO:
+      type: object
+      properties:
+        userId:
+          type: string
+        verifiedBvn:
+          type: boolean
+        verifiedEmail:
+          type: boolean
+        enableWithdrawPin:
+          type: boolean
+        verifiedOtp:
+          type: boolean
+        otpConfirmTime:
+          type: string
+          format: date-time
+    BaseRspLoginDataVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/LoginDataVO'
+    LoginDataVO:
+      type: object
+      properties:
+        userId:
+          type: string
+        phone:
+          type: string
+        name:
+          type: string
+        balance:
+          type: string
+        currency:
+          type: string
+        avatar:
+          type: string
+        active:
+          type: boolean
+    BaseRspDate:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: string
+          format: date-time
+    BaseRsp:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: object
+    BaseRspAccountProfile:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/AccountProfile'
+    BaseRspFingerprintResultVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/FingerprintResultVO'
+    FingerprintResultVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        token:
+          type: string
+        responseMessage:
+          type: string
+    BaseRspUserLatestOperationVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/UserLatestOperationVO'
+    UserLatestOperationVO:
+      type: object
+      properties:
+        ip:
+          type: string
+        platform:
+          type: string
+        loginTime:
+          type: string
+          format: date-time
+    BaseRspListUserChangeVo:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserChangeVo'
+    UserChangeVo:
+      type: object
+      properties:
+        userId:
+          type: string
+        type:
+          type: string
+        changeTime:
+          type: string
+        detail:
+          type: string
+    BaseRspListUserCertInfoVO:
+      type: object
+      properties:
+        bizCode:
+          type: integer
+          format: int32
+        innerMsg:
+          type: string
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserCertInfoVO'
